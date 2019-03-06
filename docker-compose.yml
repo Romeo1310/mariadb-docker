@@ -1,5 +1,9 @@
 version: '2'
 
+networks:
+  app-tier:
+    driver: bridge
+    
 services:
   mariadb:
     image: 'bitnami/mariadb:latest'
@@ -8,10 +12,11 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - 'mariadb_data:/Romeo1310'
+      - /mdbdata:/bitnami/mariadb
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_EXTRA_FLAGS=--max-connect-errors=1000 --max_connections=155
 
 volumes:
   mariadb_data:
