@@ -12,6 +12,7 @@ services:
     ports:
       - '3306:3306'
     volumes:
+      - /mdbdata/conf/my_custom_servicenow.cnf:/opt/bitnami/mariadb/conf/my_custom_servicenow.cnf:ro
       - /mdbdata:/bitnami/mariadb
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
